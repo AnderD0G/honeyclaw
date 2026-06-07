@@ -1,0 +1,61 @@
+---
+interface Product {
+  code: string;
+  name: string;
+  style: string;
+  shape: string;
+  technique: string;
+  thumbnail: string;
+  mainImage: string;
+  gallery: string[];
+  description: string;
+  tags: string[];
+}
+
+interface Props {
+  product: Product;
+}
+
+const { product } = Astro.props;
+---
+
+<article id={product.code} class="group overflow-hidden rounded-lg border border-charcoal/10 bg-white shadow-sm transition duration-300 hover:-translate-y-1 hover:shadow-soft">
+  <a href={product.mainImage} class="block bg-charcoal/5" aria-label={`Open larger image for ${product.name}`}>
+    <img
+      src={product.thumbnail}
+      alt={`${product.name} press-on nails`}
+      class="aspect-[4/5] w-full object-cover transition duration-500 group-hover:scale-[1.03]"
+      loading="lazy"
+      width="800"
+      height="1000"
+    />
+  </a>
+  <div class="grid gap-4 p-5">
+    <div>
+      <p class="text-xs font-black uppercase tracking-normal text-honey">{product.code}</p>
+      <h3 class="mt-1 text-lg font-black leading-tight">{product.name}</h3>
+    </div>
+    <div class="flex flex-wrap gap-2">
+      {product.tags.slice(0, 3).map((tag) => (
+        <span class="rounded border border-charcoal/10 bg-blush/20 px-3 py-1 text-xs font-bold text-charcoal/76">{tag}</span>
+      ))}
+    </div>
+    <dl class="grid gap-2 text-sm text-charcoal/72">
+      <div class="flex justify-between gap-4 border-t border-charcoal/10 pt-2">
+        <dt class="font-bold text-charcoal">Style</dt>
+        <dd class="text-right">{product.style}</dd>
+      </div>
+      <div class="flex justify-between gap-4 border-t border-charcoal/10 pt-2">
+        <dt class="font-bold text-charcoal">Shape</dt>
+        <dd class="text-right">{product.shape}</dd>
+      </div>
+      <div class="flex justify-between gap-4 border-t border-charcoal/10 pt-2">
+        <dt class="font-bold text-charcoal">Technique</dt>
+        <dd class="text-right">{product.technique}</dd>
+      </div>
+    </dl>
+    <a href="#contact" class="inline-flex items-center justify-center rounded bg-charcoal px-4 py-3 text-sm font-black text-ivory transition hover:bg-honey hover:text-charcoal">
+      Contact
+    </a>
+  </div>
+</article>

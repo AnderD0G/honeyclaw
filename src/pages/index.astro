@@ -1,0 +1,260 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import ContactCTA from '../components/ContactCTA.astro';
+import ProductCard from '../components/ProductCard.astro';
+import SeriesCard from '../components/SeriesCard.astro';
+import products from '../data/products.json';
+
+const series = [
+  { id: 'style-y2k-series', name: 'Y2K Series', tone: 'bg-[linear-gradient(135deg,#f4b8c8,#c8cdd2_48%,#fffaf0)]', description: 'Sweet cool chrome, rhinestone and jelly-color sets for trend-led drops.' },
+  { id: 'style-leopard-series', name: 'Leopard Series', tone: 'leopard-dot', description: 'Animal print with blush, honey and sharp glossy contrast.' },
+  { id: 'style-gothic-series', name: 'Gothic Series', tone: 'bg-[linear-gradient(135deg,#211f23,#5f5a66,#c8cdd2)]', description: 'Black gel, silver texture, floral contrast and party-ready drama.' },
+  { id: 'style-chrome-cat-eye-series', name: 'Chrome Cat-eye Series', tone: 'bg-[radial-gradient(circle_at_30%_30%,#fff,#c8cdd2_42%,#8b929a)]', description: 'Glossy cat-eye shine and repeatable color updates.' },
+  { id: 'style-3d-charm-series', name: '3D Charm Series', tone: 'bg-[linear-gradient(135deg,#fffaf0,#f4b8c8,#d79a2b)]', description: 'Dimensional charms, pearls and social-first statement details.' },
+  { id: 'style-office-wear-series', name: 'Office Wear Series', tone: 'bg-[linear-gradient(135deg,#fffaf0,#f3e3d1,#f4b8c8)]', description: 'Clean nude gloss, micro shimmer and daily wearable shapes.' },
+  { id: 'style-vacation-series', name: 'Vacation Series', tone: 'bg-[linear-gradient(135deg,#f4b8c8,#d79a2b,#c8cdd2)]', description: 'Bright jelly color, shell texture and travel-ready edits.' },
+];
+
+const heroSlides = [
+  {
+    image: '/images/products/hc-y2k-001.svg',
+    alt: 'Y2K chrome press-on nail set',
+  },
+  {
+    image: '/images/products/hc-leo-001.svg',
+    alt: 'Leopard press-on nail set',
+  },
+  {
+    image: '/images/products/hc-chr-001.svg',
+    alt: 'Chrome cat-eye press-on nail set',
+  },
+];
+
+const capabilities = [
+  'Small Batch Wholesale',
+  'Custom Design Support',
+  'Fast Style Updates',
+  'OEM / ODM Available',
+  'Packaging Support',
+  'Style-led Collections',
+];
+
+const contactChannels = ['WhatsApp', 'Email', 'Instagram', 'LINE', 'KakaoTalk', 'WeChat'];
+const productsBySeries = series.map((item) => ({
+  ...item,
+  products: products.filter((product) => product.style === item.name),
+}));
+---
+
+<BaseLayout>
+  <section class="relative overflow-hidden px-4 py-16 sm:px-6 sm:py-20 lg:px-8 lg:py-24">
+    <div class="absolute inset-x-0 top-0 h-px chrome-line"></div>
+    <div class="mx-auto grid max-w-7xl gap-12 lg:grid-cols-[1.05fr_0.95fr] lg:items-center">
+      <div>
+        <p class="inline-block max-w-full rounded border border-charcoal/10 bg-white px-4 py-2 text-xs font-black uppercase tracking-normal text-honey shadow-sm">
+          Wholesale & Custom Press-on Nail Designs from China
+        </p>
+        <h1 class="mt-7 max-w-4xl text-5xl font-black leading-[0.95] sm:text-6xl lg:text-7xl">
+          HoneyClaw Nails
+        </h1>
+        <p class="mt-5 text-2xl font-black text-charcoal/82 sm:text-3xl">Sweet but Sharp Press-on Nails</p>
+        <p class="mt-6 max-w-2xl text-base leading-8 text-charcoal/70 sm:text-lg">
+          Wholesale & Custom Press-on Nail Designs from China. Product planning is organized by style: Y2K, Leopard, Gothic, Chrome Cat-eye, 3D Charm, Office Wear and Vacation.
+        </p>
+        <div class="mt-8 flex flex-col gap-3 sm:flex-row">
+          <a href="#samples" class="inline-flex items-center justify-center rounded bg-charcoal px-6 py-4 text-sm font-black text-ivory transition hover:bg-honey hover:text-charcoal">
+            View Catalog
+          </a>
+          <a href="#contact" class="inline-flex items-center justify-center rounded border border-charcoal/20 bg-white px-6 py-4 text-sm font-black text-charcoal transition hover:border-honey hover:bg-blush/25">
+            Contact Us
+          </a>
+        </div>
+      </div>
+
+      <div class="relative min-h-[420px] overflow-hidden rounded-lg border border-charcoal/10 bg-white shadow-soft sm:min-h-[500px]">
+        <div class="absolute inset-0 bg-[linear-gradient(135deg,rgba(244,184,200,0.24),rgba(255,250,240,0.5)_38%,rgba(200,205,210,0.28))]"></div>
+        {heroSlides.map((slide, index) => (
+          <img
+            src={slide.image}
+            alt={slide.alt}
+            class="hero-carousel-slide absolute inset-0 h-full w-full object-cover"
+            style={`--slide-index: ${index};`}
+            width="800"
+            height="1000"
+            loading={index === 0 ? 'eager' : 'lazy'}
+          />
+        ))}
+        <div class="absolute inset-0 bg-[linear-gradient(180deg,rgba(33,31,35,0.02),rgba(33,31,35,0.12)_62%,rgba(33,31,35,0.34))]"></div>
+        <div class="absolute right-5 top-5 flex gap-2" aria-hidden="true">
+          {heroSlides.map((_, index) => (
+            <span class="hero-carousel-dot size-2.5 rounded-full bg-white/85 shadow-sm" style={`--slide-index: ${index};`}></span>
+          ))}
+        </div>
+        <div class="absolute bottom-5 left-5 right-5 rounded border border-charcoal/10 bg-ivory/88 p-4 backdrop-blur">
+          <p class="text-sm font-black uppercase tracking-normal">Sweet Cool / Y2K / Chrome / Leopard</p>
+          <p class="mt-1 text-xs font-semibold text-charcoal/62">Style-led collections for international buyers.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="styles" class="scroll-mt-24 px-4 py-16 sm:px-6 lg:px-8">
+    <div class="mx-auto max-w-7xl">
+      <div class="flex flex-col justify-between gap-4 sm:flex-row sm:items-end">
+        <div>
+          <p class="text-sm font-black uppercase tracking-normal text-honey">Product Series</p>
+          <h2 class="mt-3 text-3xl font-black sm:text-4xl">Choose products by style direction</h2>
+        </div>
+        <a href="#samples" class="text-sm font-black text-charcoal underline decoration-honey decoration-2 underline-offset-4">View sample products</a>
+      </div>
+      <div class="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+        {series.map((item) => (
+          <a href={`#${item.id}`} class="block">
+            <SeriesCard name={item.name} tone={item.tone} description={item.description} />
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section id="samples" class="scroll-mt-24 bg-white px-4 py-16 sm:px-6 lg:px-8">
+    <div class="mx-auto max-w-7xl">
+      <div class="flex flex-col justify-between gap-4 sm:flex-row sm:items-end">
+        <div>
+          <p class="text-sm font-black uppercase tracking-normal text-honey">Product Samples</p>
+          <h2 class="mt-3 max-w-3xl text-3xl font-black sm:text-4xl">Featured press-on nail designs</h2>
+        </div>
+        <p class="max-w-md text-sm leading-6 text-charcoal/62">Product images can be replaced with webp or jpg files in public/images/products/.</p>
+      </div>
+
+      <div class="mt-10 grid gap-12">
+        {productsBySeries.map((item) => (
+          <section id={item.id} class="scroll-mt-28">
+            <div class="mb-5 flex flex-col gap-3 border-b border-charcoal/10 pb-4 sm:flex-row sm:items-end sm:justify-between">
+              <div>
+                <p class="text-xs font-black uppercase tracking-normal text-honey">Series</p>
+                <h3 class="mt-1 text-2xl font-black sm:text-3xl">{item.name}</h3>
+              </div>
+              <p class="max-w-xl text-sm leading-6 text-charcoal/66">{item.description}</p>
+            </div>
+
+            {item.products.length > 0 ? (
+              <div class="grid gap-5 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+                {item.products.map((product) => <ProductCard product={product} />)}
+              </div>
+            ) : (
+              <div class="rounded-lg border border-charcoal/10 bg-ivory p-5 text-sm font-bold text-charcoal/62">
+                Samples for this series will be added soon.
+              </div>
+            )}
+          </section>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section id="wholesale" class="scroll-mt-24 px-4 py-16 sm:px-6 lg:px-8">
+    <div class="mx-auto grid max-w-7xl gap-10 lg:grid-cols-[0.82fr_1.18fr] lg:items-start">
+      <div>
+        <p class="text-sm font-black uppercase tracking-normal text-honey">Wholesale & Custom</p>
+        <h2 class="mt-3 text-3xl font-black sm:text-4xl">Built for buyer conversations, not public price lists</h2>
+        <p class="mt-5 text-base leading-7 text-charcoal/70">
+          We support wholesale buyers with trend-aware press-on nail collections, custom design development and packaging-ready style planning. Wholesale pricing available upon request.
+        </p>
+      </div>
+      <div class="grid gap-4 sm:grid-cols-2">
+        {capabilities.map((item) => (
+          <div class="rounded-lg border border-charcoal/10 bg-white p-5 shadow-sm">
+            <p class="text-lg font-black">{item}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section id="contact" class="scroll-mt-24 px-4 py-16 sm:px-6 lg:px-8">
+    <div class="mx-auto max-w-7xl">
+      <div class="grid gap-10 lg:grid-cols-[0.8fr_1.2fr] lg:items-start">
+        <div>
+          <p class="text-sm font-black uppercase tracking-normal text-honey">Contact</p>
+          <h2 class="mt-3 text-3xl font-black sm:text-4xl">Send your target quantity and preferred styles</h2>
+          <p class="mt-5 text-base leading-7 text-charcoal/70">
+            Contact details can be added before launch. For now, this section keeps all inquiry paths on the same page.
+          </p>
+        </div>
+        <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          {contactChannels.map((channel) => (
+            <div class="rounded-lg border border-charcoal/10 bg-white p-5 shadow-sm">
+              <p class="text-lg font-black">{channel}</p>
+              <p class="mt-2 text-sm leading-6 text-charcoal/68">Contact details will be added before launch.</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <ContactCTA />
+
+  <button
+    id="back-to-top"
+    type="button"
+    onclick="window.scrollTo(0, 0)"
+    aria-label="Back to top"
+    class="fixed bottom-5 right-5 z-50 grid size-12 place-items-center rounded-full border border-charcoal/10 bg-honey text-lg font-black text-charcoal shadow-soft transition hover:-translate-y-1 hover:bg-charcoal hover:text-ivory"
+  >
+    ↑
+  </button>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      document.querySelector('#back-to-top')?.addEventListener('click', () => {
+        window.scrollTo(0, 0);
+      });
+    });
+  </script>
+
+  <style>
+    .hero-carousel-slide {
+      animation: heroSlide 12s infinite;
+      animation-delay: calc(var(--slide-index) * 4s);
+      opacity: 0;
+      transform: scale(1.04);
+    }
+
+    .hero-carousel-dot {
+      animation: heroDot 12s infinite;
+      animation-delay: calc(var(--slide-index) * 4s);
+      opacity: 0.35;
+    }
+
+    @keyframes heroSlide {
+      0%, 30% {
+        opacity: 1;
+        transform: scale(1);
+      }
+
+      36%, 94% {
+        opacity: 0;
+        transform: scale(1.04);
+      }
+
+      100% {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+
+    @keyframes heroDot {
+      0%, 30%, 100% {
+        opacity: 1;
+        transform: scale(1.18);
+      }
+
+      36%, 94% {
+        opacity: 0.35;
+        transform: scale(1);
+      }
+    }
+  </style>
+</BaseLayout>

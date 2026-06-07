@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 1000" role="img" aria-labelledby="title desc">
+  <title id="title">HoneyClaw Nails product placeholder</title>
+  <desc id="desc">A styled press-on nail placeholder with honey, blush, chrome and leopard inspired details.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#fffaf0"/>
+      <stop offset="0.45" stop-color="#f6b7c7"/>
+      <stop offset="1" stop-color="#c9ced6"/>
+    </linearGradient>
+    <linearGradient id="chrome" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#f8fafc"/>
+      <stop offset="0.3" stop-color="#c9ced6"/>
+      <stop offset="0.6" stop-color="#fffaf0"/>
+      <stop offset="1" stop-color="#d69a2d"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="1000" fill="url(#bg)"/>
+  <path d="M90 0h80l-80 120zm540 0h110L620 170zM0 760l140-80-60 220zm800-170v150L650 860z" fill="#1f1d20" opacity="0.08"/>
+  <g transform="translate(140 120)">
+    <rect x="70" y="40" width="96" height="520" rx="48" fill="#fffaf0" stroke="#1f1d20" stroke-width="8"/>
+    <rect x="210" y="0" width="96" height="570" rx="48" fill="url(#chrome)" stroke="#1f1d20" stroke-width="8"/>
+    <rect x="350" y="50" width="96" height="520" rx="48" fill="#f6b7c7" stroke="#1f1d20" stroke-width="8"/>
+    <path d="M397 145c23 16 29 44 14 66-18 27-60 22-71-8-8-22 7-52 34-63 7-3 15 0 23 5z" fill="#1f1d20" opacity="0.82"/>
+    <circle cx="382" cy="275" r="22" fill="#d69a2d"/>
+    <circle cx="415" cy="352" r="16" fill="#1f1d20" opacity="0.72"/>
+    <circle cx="112" cy="190" r="18" fill="#d69a2d"/>
+    <path d="M112 85l12 33 35 2-28 21 9 35-28-20-29 20 10-35-28-21 35-2z" fill="#d69a2d"/>
+    <path d="M252 115c26 38 34 76 25 114-9 40-32 75-69 105 25-76 32-149 44-219z" fill="#fffaf0" opacity="0.55"/>
+  </g>
+  <text x="400" y="830" text-anchor="middle" fill="#1f1d20" font-family="Arial, sans-serif" font-size="52" font-weight="800">HoneyClaw</text>
+  <text x="400" y="885" text-anchor="middle" fill="#1f1d20" font-family="Arial, sans-serif" font-size="24" font-weight="700" letter-spacing="7">SWEET BUT SHARP</text>
+</svg>

@@ -1,0 +1,48 @@
+---
+const styles = [
+  { label: 'Y2K', href: '#style-y2k-series' },
+  { label: 'Leopard', href: '#style-leopard-series' },
+  { label: 'Gothic', href: '#style-gothic-series' },
+  { label: 'Chrome Cat-eye', href: '#style-chrome-cat-eye-series' },
+  { label: '3D Charm', href: '#style-3d-charm-series' },
+  { label: 'Office Wear', href: '#style-office-wear-series' },
+  { label: 'Vacation', href: '#style-vacation-series' },
+];
+---
+
+<footer class="border-t border-charcoal/10 bg-charcoal text-ivory">
+  <div class="mx-auto grid max-w-7xl gap-10 px-4 py-12 sm:px-6 md:grid-cols-[1.4fr_1fr_1fr] lg:px-8">
+    <div>
+      <a href="#top" class="inline-flex items-center gap-4" aria-label="HoneyClaw Nails home">
+        <span class="grid size-16 place-items-center overflow-hidden rounded border border-white/12 bg-white">
+          <img src="/images/logo.png" alt="" class="h-full w-full object-contain p-1.5" width="1276" height="1344" loading="lazy" />
+        </span>
+        <span class="text-xl font-black uppercase tracking-normal">HoneyClaw Nails</span>
+      </a>
+      <p class="mt-4 max-w-md text-sm leading-6 text-ivory/72">
+        Sweet but sharp press-on nail designs from China for wholesale buyers, custom collections and style-led catalog launches.
+      </p>
+    </div>
+    <div>
+      <a href="#styles" class="text-sm font-black uppercase tracking-normal text-honey transition hover:text-blush">Styles</a>
+      <ul class="mt-4 grid gap-2 text-sm text-ivory/72">
+        {styles.map((style) => (
+          <li>
+            <a href={style.href} class="transition hover:text-honey">{style.label}</a>
+          </li>
+        ))}
+      </ul>
+    </div>
+    <div>
+      <a href="#contact" class="text-sm font-black uppercase tracking-normal text-honey transition hover:text-blush">Contact</a>
+      <ul class="mt-4 grid gap-2 text-sm text-ivory/72">
+        <li><a href="#contact" class="transition hover:text-honey">WhatsApp / Email / Instagram</a></li>
+        <li><a href="#contact" class="transition hover:text-honey">LINE / KakaoTalk / WeChat</a></li>
+        <li><a href="#contact" class="transition hover:text-honey">Wholesale pricing available upon request.</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="border-t border-white/10 px-4 py-5 text-center text-xs text-ivory/48">
+    © {new Date().getFullYear()} HoneyClaw Nails. Wholesale & custom press-on nail designs.
+  </div>
+</footer>

@@ -1,0 +1,89 @@
+---
+const navItems = [
+  { href: '#top', label: 'Home' },
+  { href: '#styles', label: 'Styles' },
+  { href: '#samples', label: 'Catalog' },
+  { href: '#wholesale', label: 'Wholesale' },
+  { href: '#contact', label: 'Contact' },
+];
+
+const currentPath = Astro.url.pathname.replace(/\/$/, '') || '/';
+const isHome = currentPath === '/';
+---
+
+<header id="top" class="sticky top-0 z-40 scroll-mt-24 border-b border-charcoal/10 bg-ivory/92 backdrop-blur-xl">
+  <div class="mx-auto flex max-w-7xl items-center justify-between px-4 py-4 sm:px-6 lg:px-8">
+    <a href="#top" class="group flex items-center gap-3" aria-label="HoneyClaw Nails home">
+      <span class="grid size-12 place-items-center overflow-hidden rounded border border-charcoal/10 bg-white shadow-[4px_4px_0_rgba(215,154,43,0.55)]">
+        <img src="/images/logo.png" alt="" class="h-full w-full object-contain p-1" width="1276" height="1344" />
+      </span>
+      <span class="leading-tight">
+        <span class="block text-base font-black uppercase tracking-normal">HoneyClaw Nails</span>
+        <span class="block text-xs font-semibold uppercase tracking-normal text-charcoal/58">Sweet but Sharp</span>
+      </span>
+    </a>
+
+    <nav class="hidden items-center gap-1 lg:flex" aria-label="Primary navigation">
+      {navItems.map((item) => (
+        <a
+          href={item.href}
+          class:list={[
+            'rounded px-3 py-2 text-sm font-bold transition hover:bg-blush/35',
+            isHome && item.href === '#top' ? 'bg-charcoal text-ivory hover:bg-charcoal' : 'text-charcoal/76',
+          ]}
+        >
+          {item.label}
+        </a>
+      ))}
+    </nav>
+
+    <button
+      id="mobile-menu-button"
+      type="button"
+      class="inline-flex size-11 items-center justify-center rounded border border-charcoal/20 bg-white/70 text-charcoal lg:hidden"
+      aria-controls="mobile-menu"
+      aria-expanded="false"
+      aria-label="Open navigation menu"
+    >
+      <span class="flex w-5 flex-col gap-1.5" aria-hidden="true">
+        <span class="h-0.5 rounded bg-current"></span>
+        <span class="h-0.5 rounded bg-current"></span>
+        <span class="h-0.5 rounded bg-current"></span>
+      </span>
+    </button>
+  </div>
+
+  <nav id="mobile-menu" class="hidden border-t border-charcoal/10 bg-ivory px-4 pb-4 lg:hidden" aria-label="Mobile navigation">
+    <div class="grid gap-1 pt-3">
+      {navItems.map((item) => (
+        <a
+          href={item.href}
+          class:list={[
+            'rounded px-3 py-3 text-sm font-bold',
+            isHome && item.href === '#top' ? 'bg-charcoal text-ivory' : 'text-charcoal/78 hover:bg-blush/30',
+          ]}
+        >
+          {item.label}
+        </a>
+      ))}
+    </div>
+  </nav>
+
+  <script>
+    const menuButton = document.querySelector('#mobile-menu-button');
+    const mobileMenu = document.querySelector('#mobile-menu');
+
+    menuButton?.addEventListener('click', () => {
+      const isOpen = menuButton.getAttribute('aria-expanded') === 'true';
+      menuButton.setAttribute('aria-expanded', String(!isOpen));
+      mobileMenu?.classList.toggle('hidden');
+    });
+
+    mobileMenu?.querySelectorAll('a').forEach((link) => {
+      link.addEventListener('click', () => {
+        menuButton?.setAttribute('aria-expanded', 'false');
+        mobileMenu.classList.add('hidden');
+      });
+    });
+  </script>
+</header>

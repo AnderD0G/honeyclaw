@@ -1,0 +1,86 @@
+[
+  {
+    "code": "HC-Y2K-001",
+    "name": "Sugar Byte Chrome Set",
+    "style": "Y2K Series",
+    "shape": "Medium Almond",
+    "technique": "Chrome powder, jelly base, rhinestone accents",
+    "thumbnail": "/images/products/hc-y2k-001.svg",
+    "mainImage": "/images/products/hc-y2k-001.svg",
+    "gallery": ["/images/products/hc-y2k-001.svg"],
+    "description": "A sweet cool Y2K press-on nail set with chrome shine and playful rhinestone details for trend-focused buyers.",
+    "tags": ["Y2K", "Chrome", "Sweet Cool"]
+  },
+  {
+    "code": "HC-LEO-001",
+    "name": "Honey Leopard Edge Set",
+    "style": "Leopard Series",
+    "shape": "Short Square",
+    "technique": "Hand-painted leopard, glossy finish",
+    "thumbnail": "/images/products/hc-leo-001.svg",
+    "mainImage": "/images/products/hc-leo-001.svg",
+    "gallery": ["/images/products/hc-leo-001.svg"],
+    "description": "Leopard print balanced with blush and honey tones for a sharp but wearable statement.",
+    "tags": ["Leopard", "Blush", "Glossy"]
+  },
+  {
+    "code": "HC-GOTH-001",
+    "name": "Gothic Bloom Silver Set",
+    "style": "Gothic Series",
+    "shape": "Long Coffin",
+    "technique": "Black gel art, silver foil, floral contrast",
+    "thumbnail": "/images/products/hc-goth-001.svg",
+    "mainImage": "/images/products/hc-goth-001.svg",
+    "gallery": ["/images/products/hc-goth-001.svg"],
+    "description": "A gothic bloom direction with silver texture and party-ready drama for premium seasonal collections.",
+    "tags": ["Gothic", "Silver", "Bloom"]
+  },
+  {
+    "code": "HC-CHR-001",
+    "name": "Chrome Cat-eye Aura Set",
+    "style": "Chrome Cat-eye Series",
+    "shape": "Oval",
+    "technique": "Cat-eye magnetic gel, chrome powder",
+    "thumbnail": "/images/products/hc-chr-001.svg",
+    "mainImage": "/images/products/hc-chr-001.svg",
+    "gallery": ["/images/products/hc-chr-001.svg"],
+    "description": "A clean chrome cat-eye set designed for glossy merchandising and repeatable color updates.",
+    "tags": ["Chrome", "Cat-eye", "Aura"]
+  },
+  {
+    "code": "HC-3D-001",
+    "name": "Charm Crush 3D Set",
+    "style": "3D Charm Series",
+    "shape": "Medium Coffin",
+    "technique": "3D charms, pearl accents, builder gel",
+    "thumbnail": "/images/products/hc-3d-001.svg",
+    "mainImage": "/images/products/hc-3d-001.svg",
+    "gallery": ["/images/products/hc-3d-001.svg"],
+    "description": "Dimensional charms and pearl details for expressive press-on nail drops and social-first catalog stories.",
+    "tags": ["3D Charm", "Pearl", "Statement"]
+  },
+  {
+    "code": "HC-OFFICE-001",
+    "name": "Soft Office Gloss Set",
+    "style": "Office Wear Series",
+    "shape": "Short Almond",
+    "technique": "Sheer nude gel, micro shimmer, glossy top",
+    "thumbnail": "/images/products/hc-office-001.svg",
+    "mainImage": "/images/products/hc-office-001.svg",
+    "gallery": ["/images/products/hc-office-001.svg"],
+    "description": "A clean and packaging-friendly office wear direction for buyers seeking wearable daily styles.",
+    "tags": ["Office Wear", "Clean", "Nude"]
+  },
+  {
+    "code": "HC-VAC-001",
+    "name": "Vacation Shell Pop Set",
+    "style": "Vacation Series",
+    "shape": "Medium Square",
+    "technique": "Jelly color, shell texture, metallic accent",
+    "thumbnail": "/images/products/hc-vac-001.svg",
+    "mainImage": "/images/products/hc-vac-001.svg",
+    "gallery": ["/images/products/hc-vac-001.svg"],
+    "description": "A bright vacation-ready set with shell-inspired texture and metallic details for travel and holiday edits.",
+    "tags": ["Vacation", "Shell", "Metallic"]
+  }
+]

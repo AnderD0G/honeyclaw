@@ -1,0 +1,15 @@
+---
+interface Props {
+  name: string;
+  tone: string;
+  description?: string;
+}
+
+const { name, tone, description = 'Wholesale pricing available upon request.' } = Astro.props;
+---
+
+<div class="rounded-lg border border-charcoal/10 bg-white p-5 shadow-sm transition duration-300 hover:-translate-y-1 hover:shadow-soft">
+  <div class:list={['mb-5 h-28 rounded border border-charcoal/10', tone]}></div>
+  <h3 class="text-lg font-black">{name}</h3>
+  <p class="mt-2 text-sm leading-6 text-charcoal/68">{description}</p>
+</div>
