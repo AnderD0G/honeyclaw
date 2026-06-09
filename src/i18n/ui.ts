@@ -30,9 +30,9 @@ export const ui = {
       imageCaption: 'Sweet Cool / Y2K / Chrome / Leopard',
       imageCaptionBody: 'Style-led collections for international buyers.',
       slides: [
-        'Y2K chrome press-on nail set',
-        'Leopard press-on nail set',
-        'Chrome cat-eye press-on nail set',
+        'Leopard and gothic charm press-on nail set',
+        'Chrome cat-eye marble press-on nail set',
+        'Nude jelly oval press-on nail set',
       ],
     },
     stylesSection: {
@@ -64,7 +64,7 @@ export const ui = {
       eyebrow: 'Contact',
       title: 'Send your target quantity and preferred styles',
       body: 'Contact details can be added before launch. For now, this section keeps all inquiry paths on the same page.',
-      channels: ['WhatsApp', 'Email', 'Instagram', 'LINE', 'KakaoTalk', 'WeChat'],
+      channels: ['WhatsApp', 'Email', 'Instagram', 'LINE', 'KakaoTalk: HCNail', 'WeChat'],
       channelNote: 'Contact details will be added before launch.',
     },
     productCard: {
@@ -121,9 +121,9 @@ export const ui = {
       imageCaption: '甜酷 / Y2K / 镭射 / 豹纹',
       imageCaptionBody: '面向海外买手的风格化系列选品。',
       slides: [
-        'Y2K 镭射穿戴甲套组',
-        '豹纹穿戴甲套组',
-        '镭射猫眼穿戴甲套组',
+        '豹纹哥特饰品穿戴甲套组',
+        '镭射猫眼大理石穿戴甲套组',
+        '裸色果冻椭圆穿戴甲套组',
       ],
     },
     stylesSection: {
@@ -155,7 +155,7 @@ export const ui = {
       eyebrow: '联系',
       title: '发送目标数量和偏好风格',
       body: '正式上线前可在这里添加联系方式。当前页面会把所有询盘入口集中在同一位置。',
-      channels: ['WhatsApp', '邮箱', 'Instagram', 'LINE', 'KakaoTalk', '微信'],
+      channels: ['WhatsApp', '邮箱', 'Instagram', 'LINE', 'KakaoTalk: HCNail', '微信'],
       channelNote: '联系方式将在上线前补充。',
     },
     productCard: {
@@ -212,9 +212,9 @@ export const ui = {
       imageCaption: '스위트 쿨 / Y2K / 크롬 / 레오파드',
       imageCaptionBody: '해외 바이어를 위한 스타일 중심 컬렉션.',
       slides: [
-        'Y2K 크롬 네일팁 세트',
-        '레오파드 네일팁 세트',
-        '크롬 캣아이 네일팁 세트',
+        '레오파드 고딕 참 네일팁 세트',
+        '크롬 캣아이 마블 네일팁 세트',
+        '누드 젤리 오벌 네일팁 세트',
       ],
     },
     stylesSection: {
@@ -246,7 +246,7 @@ export const ui = {
       eyebrow: '문의',
       title: '목표 수량과 선호 스타일을 보내주세요',
       body: '정식 오픈 전 연락처를 추가할 수 있습니다. 현재는 모든 문의 경로를 한 페이지에 모아 두었습니다.',
-      channels: ['WhatsApp', '이메일', 'Instagram', 'LINE', 'KakaoTalk', 'WeChat'],
+      channels: ['WhatsApp', '이메일', 'Instagram', 'LINE', 'KakaoTalk: HCNail', 'WeChat'],
       channelNote: '연락처는 오픈 전에 추가될 예정입니다.',
     },
     productCard: {

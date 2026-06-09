@@ -25,15 +25,15 @@ const productCopy = productTranslations[lang] as Record<string, {
 
 const heroSlides = [
   {
-    image: '/images/products/hc-y2k-001.svg',
+    image: '/images/hero/slide-1.png',
     alt: copy.hero.slides[0],
   },
   {
-    image: '/images/products/hc-leo-001.svg',
+    image: '/images/hero/slide-2.png',
     alt: copy.hero.slides[1],
   },
   {
-    image: '/images/products/hc-chr-001.svg',
+    image: '/images/hero/slide-3.png',
     alt: copy.hero.slides[2],
   },
 ];
@@ -127,7 +127,6 @@ const productsBySeries = series.map((item) => ({
           <p class="text-sm font-black uppercase tracking-normal text-honey">{copy.samples.eyebrow}</p>
           <h2 class="mt-3 max-w-3xl text-3xl font-black sm:text-4xl">{copy.samples.title}</h2>
         </div>
-        <p class="max-w-md text-sm leading-6 text-charcoal/62">{copy.samples.note}</p>
       </div>
 
       <div class="mt-10 grid gap-12">
@@ -181,15 +180,11 @@ const productsBySeries = series.map((item) => ({
         <div>
           <p class="text-sm font-black uppercase tracking-normal text-honey">{copy.contact.eyebrow}</p>
           <h2 class="mt-3 text-3xl font-black sm:text-4xl">{copy.contact.title}</h2>
-          <p class="mt-5 text-base leading-7 text-charcoal/70">
-            {copy.contact.body}
-          </p>
         </div>
         <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {copy.contact.channels.map((channel) => (
             <div class="rounded-lg border border-charcoal/10 bg-white p-5 shadow-sm">
               <p class="text-lg font-black">{channel}</p>
-              <p class="mt-2 text-sm leading-6 text-charcoal/68">{copy.contact.channelNote}</p>
             </div>
           ))}
         </div>

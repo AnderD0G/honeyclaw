@@ -28,3 +28,6 @@ pnpm-debug.log*
 /zhanshiye/
 /1.png
 /9b655cff-f8fe-4b1b-a95d-f0e4e5f4ba93.png
+
+# original carousel source photos (copied into public/images/hero/)
+/*.PNG
