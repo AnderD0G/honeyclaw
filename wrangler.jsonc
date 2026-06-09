@@ -1,0 +1,17 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "honey-claw-nails",
+  "compatibility_date": "2025-01-01",
+  // Cloudflare Pages project: this field marks the file as a Pages config and
+  // points to Astro's static build output so the bindings below are applied.
+  "pages_build_output_dir": "./dist",
+  // Bind the SESSION KV namespace to the EXISTING namespace so the deploy does
+  // not try to auto-provision (create) a duplicate "honeyclaw-session", which
+  // fails with error code 10014 once it already exists.
+  "kv_namespaces": [
+    {
+      "binding": "SESSION",
+      "id": "62edf63b21f242359a720b7bf5bf07ce"
+    }
+  ]
+}
