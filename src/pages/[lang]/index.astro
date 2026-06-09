@@ -87,16 +87,15 @@ const productsBySeries = series.map((item) => ({
             loading={index === 0 ? 'eager' : 'lazy'}
           />
         ))}
-        <div class="absolute inset-0 bg-[linear-gradient(180deg,rgba(33,31,35,0.02),rgba(33,31,35,0.12)_62%,rgba(33,31,35,0.34))]"></div>
         <div class="absolute right-5 top-5 flex gap-2" aria-hidden="true">
           {heroSlides.map((_, index) => (
             <span class="hero-carousel-dot size-2.5 rounded-full bg-white/85 shadow-sm" style={`--slide-index: ${index};`}></span>
           ))}
         </div>
-        <div class="absolute bottom-5 left-5 right-5 rounded border border-charcoal/10 bg-ivory/88 p-4 backdrop-blur">
-          <p class="text-sm font-black uppercase tracking-normal">{copy.hero.imageCaption}</p>
-          <p class="mt-1 text-xs font-semibold text-charcoal/62">{copy.hero.imageCaptionBody}</p>
-        </div>
+      </div>
+      <div class="mt-4 rounded border border-charcoal/10 bg-white p-4 shadow-sm">
+        <p class="text-sm font-black uppercase tracking-normal">{copy.hero.imageCaption}</p>
+        <p class="mt-1 text-xs font-semibold text-charcoal/62">{copy.hero.imageCaptionBody}</p>
       </div>
     </div>
   </section>
