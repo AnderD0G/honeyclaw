@@ -74,28 +74,36 @@ const productsBySeries = series.map((item) => ({
         </div>
       </div>
 
-      <div class="relative min-h-[420px] overflow-hidden rounded-lg border border-charcoal/10 bg-white shadow-soft sm:min-h-[500px]">
-        <div class="absolute inset-0 bg-[linear-gradient(135deg,rgba(244,184,200,0.24),rgba(255,250,240,0.5)_38%,rgba(200,205,210,0.28))]"></div>
-        {heroSlides.map((slide, index) => (
-          <img
-            src={slide.image}
-            alt={slide.alt}
-            class="hero-carousel-slide absolute inset-0 h-full w-full object-cover"
-            style={`--slide-index: ${index};`}
-            width="800"
-            height="1000"
-            loading={index === 0 ? 'eager' : 'lazy'}
-          />
-        ))}
-        <div class="absolute right-5 top-5 flex gap-2" aria-hidden="true">
-          {heroSlides.map((_, index) => (
-            <span class="hero-carousel-dot size-2.5 rounded-full bg-white/85 shadow-sm" style={`--slide-index: ${index};`}></span>
+      <div>
+        <div id="hero-carousel" class="relative min-h-[420px] cursor-grab touch-pan-y select-none overflow-hidden rounded-lg border border-charcoal/10 bg-white shadow-soft active:cursor-grabbing sm:min-h-[500px]">
+          <div class="pointer-events-none absolute inset-0 bg-[linear-gradient(135deg,rgba(244,184,200,0.24),rgba(255,250,240,0.5)_38%,rgba(200,205,210,0.28))]"></div>
+          {heroSlides.map((slide, index) => (
+            <img
+              src={slide.image}
+              alt={slide.alt}
+              data-slide={index}
+              class:list={['hero-slide pointer-events-none absolute inset-0 h-full w-full object-cover transition-opacity duration-700 ease-out', index === 0 ? 'opacity-100' : 'opacity-0']}
+              width="800"
+              height="1000"
+              loading={index === 0 ? 'eager' : 'lazy'}
+              draggable="false"
+            />
           ))}
+          <div class="absolute right-5 top-5 flex gap-2">
+            {heroSlides.map((_, index) => (
+              <button
+                type="button"
+                data-dot={index}
+                aria-label={`${copy.hero.imageCaption} ${index + 1}`}
+                class:list={['hero-dot size-2.5 rounded-full bg-white shadow-sm transition', index === 0 ? 'opacity-100' : 'opacity-40']}
+              ></button>
+            ))}
+          </div>
         </div>
-      </div>
-      <div class="mt-4 rounded border border-charcoal/10 bg-white p-4 shadow-sm">
-        <p class="text-sm font-black uppercase tracking-normal">{copy.hero.imageCaption}</p>
-        <p class="mt-1 text-xs font-semibold text-charcoal/62">{copy.hero.imageCaptionBody}</p>
+        <div class="mt-4 rounded border border-charcoal/10 bg-white p-4 shadow-sm">
+          <p class="text-sm font-black uppercase tracking-normal">{copy.hero.imageCaption}</p>
+          <p class="mt-1 text-xs font-semibold text-charcoal/62">{copy.hero.imageCaptionBody}</p>
+        </div>
       </div>
     </div>
   </section>
@@ -208,52 +216,69 @@ const productsBySeries = series.map((item) => ({
       document.querySelector('#back-to-top')?.addEventListener('click', () => {
         window.scrollTo(0, 0);
       });
+
+      const carousel = document.querySelector('#hero-carousel');
+      if (carousel) {
+        const slides = Array.from(carousel.querySelectorAll('[data-slide]'));
+        const dots = Array.from(carousel.querySelectorAll('[data-dot]'));
+        let current = 0;
+        let timer = 0;
+
+        const show = (next) => {
+          current = (next + slides.length) % slides.length;
+          slides.forEach((slide, i) => {
+            slide.classList.toggle('opacity-100', i === current);
+            slide.classList.toggle('opacity-0', i !== current);
+          });
+          dots.forEach((dot, i) => {
+            dot.classList.toggle('opacity-100', i === current);
+            dot.classList.toggle('opacity-40', i !== current);
+          });
+        };
+
+        const stop = () => {
+          if (timer) window.clearInterval(timer);
+          timer = 0;
+        };
+        const start = () => {
+          stop();
+          timer = window.setInterval(() => show(current + 1), 4000);
+        };
+
+        dots.forEach((dot, i) =>
+          dot.addEventListener('click', () => {
+            show(i);
+            start();
+          })
+        );
+
+        let startX = null;
+        carousel.addEventListener('pointerdown', (event) => {
+          startX = event.clientX;
+          stop();
+        });
+        const endSwipe = (event) => {
+          if (startX === null) return;
+          const dx = event.clientX - startX;
+          if (Math.abs(dx) > 40) show(current + (dx < 0 ? 1 : -1));
+          startX = null;
+          start();
+        };
+        carousel.addEventListener('pointerup', endSwipe);
+        carousel.addEventListener('pointercancel', () => {
+          startX = null;
+          start();
+        });
+        carousel.addEventListener('pointerleave', endSwipe);
+
+        start();
+      }
     });
   </script>
 
   <style>
-    .hero-carousel-slide {
-      animation: heroSlide 12s infinite;
-      animation-delay: calc(var(--slide-index) * 4s);
-      opacity: 0;
-      transform: scale(1.04);
-    }
-
-    .hero-carousel-dot {
-      animation: heroDot 12s infinite;
-      animation-delay: calc(var(--slide-index) * 4s);
-      opacity: 0.35;
-    }
-
-    @keyframes heroSlide {
-      0%, 30% {
-        opacity: 1;
-        transform: scale(1);
-      }
-
-      36%, 94% {
-        opacity: 0;
-        transform: scale(1.04);
-      }
-
-      100% {
-        opacity: 1;
-        transform: scale(1);
-      }
-    }
-
-    @keyframes heroDot {
-      0%, 30% {
-        opacity: 1;
-      }
-
-      36%, 94% {
-        opacity: 0.35;
-      }
-
-      100% {
-        opacity: 1;
-      }
+    .hero-slide {
+      backface-visibility: hidden;
     }
   </style>
 </BaseLayout>

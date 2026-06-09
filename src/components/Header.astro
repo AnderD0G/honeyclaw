@@ -75,20 +75,33 @@ const isHome = currentPath === '/' || currentPath === `/${lang}`;
       </select>
     </div>
 
-    <button
-      id="mobile-menu-button"
-      type="button"
-      class="inline-flex size-11 items-center justify-center rounded border border-charcoal/20 bg-white/70 text-charcoal lg:hidden"
-      aria-controls="mobile-menu"
-      aria-expanded="false"
-      aria-label={nav.openMenu}
-    >
-      <span class="flex w-5 flex-col gap-1.5" aria-hidden="true">
-        <span class="h-0.5 rounded bg-current"></span>
-        <span class="h-0.5 rounded bg-current"></span>
-        <span class="h-0.5 rounded bg-current"></span>
-      </span>
-    </button>
+    <div class="flex items-center gap-2 lg:hidden">
+      <label for="mobile-language-select" class="sr-only">{nav.language}</label>
+      <select
+        id="mobile-language-select"
+        class="rounded border border-charcoal/20 bg-white px-2.5 py-2 text-sm font-bold text-charcoal shadow-sm"
+        aria-label={nav.language}
+        data-language-select
+      >
+        {languageOptions.map(([code, label]) => (
+          <option value={code} selected={code === lang}>{label}</option>
+        ))}
+      </select>
+      <button
+        id="mobile-menu-button"
+        type="button"
+        class="inline-flex size-11 items-center justify-center rounded border border-charcoal/20 bg-white/70 text-charcoal"
+        aria-controls="mobile-menu"
+        aria-expanded="false"
+        aria-label={nav.openMenu}
+      >
+        <span class="flex w-5 flex-col gap-1.5" aria-hidden="true">
+          <span class="h-0.5 rounded bg-current"></span>
+          <span class="h-0.5 rounded bg-current"></span>
+          <span class="h-0.5 rounded bg-current"></span>
+        </span>
+      </button>
+    </div>
   </div>
 
   <nav id="mobile-menu" class="hidden border-t border-charcoal/10 bg-ivory px-4 pb-4 lg:hidden" aria-label="Mobile navigation">
@@ -104,17 +117,6 @@ const isHome = currentPath === '/' || currentPath === `/${lang}`;
           {item.label}
         </a>
       ))}
-      <label class="mt-2 text-xs font-black uppercase tracking-normal text-charcoal/58" for="mobile-language-select">{nav.language}</label>
-      <select
-        id="mobile-language-select"
-        class="rounded border border-charcoal/20 bg-white px-3 py-3 text-sm font-bold text-charcoal"
-        aria-label={nav.language}
-        data-language-select
-      >
-        {languageOptions.map(([code, label]) => (
-          <option value={code} selected={code === lang}>{label}</option>
-        ))}
-      </select>
     </div>
   </nav>
 
