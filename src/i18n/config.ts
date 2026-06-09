@@ -16,12 +16,3 @@ export function isLanguage(value: string | undefined): value is Language {
 export function getLanguagePath(language: Language, hash = '') {
   return `/${language}/${hash}`;
 }
-
-export const countryLanguageMap: Record<string, Language> = {
-  CN: 'zh',
-  HK: 'zh',
-  MO: 'zh',
-  TW: 'zh',
-  SG: 'zh',
-  KR: 'ko',
-};
