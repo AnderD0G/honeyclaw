@@ -2,43 +2,59 @@
 import '../styles/global.css';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
+import { defaultLanguage, supportedLanguages, type Language } from '../i18n/config';
+import { seriesTranslations, t } from '../i18n/ui';
 
 interface Props {
+  lang?: Language;
   title?: string;
   description?: string;
 }
 
 const {
-  title = 'HoneyClaw Nails | Sweet but Sharp Press-on Nails',
-  description = 'Wholesale and custom press-on nail designs from China, organized by style direction for fast catalog planning.',
+  lang = defaultLanguage,
+  title,
+  description,
 } = Astro.props;
+
+const copy = t(lang);
+const pageTitle = title ?? copy.meta.title;
+const pageDescription = description ?? copy.meta.description;
+const languageAlternates = supportedLanguages.map((language) => ({
+  language,
+  href: `/${language}/`,
+}));
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang={lang}>
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="generator" content={Astro.generator} />
-    <meta name="description" content={description} />
-    <meta property="og:title" content={title} />
-    <meta property="og:description" content={description} />
+    <meta name="description" content={pageDescription} />
+    <meta property="og:title" content={pageTitle} />
+    <meta property="og:description" content={pageDescription} />
     <meta property="og:image" content="/images/logo.png" />
     <meta property="og:type" content="website" />
+    {languageAlternates.map((alternate) => (
+      <link rel="alternate" hreflang={alternate.language} href={alternate.href} />
+    ))}
+    <link rel="alternate" hreflang="x-default" href={`/${defaultLanguage}/`} />
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content={title} />
-    <meta name="twitter:description" content={description} />
+    <meta name="twitter:title" content={pageTitle} />
+    <meta name="twitter:description" content={pageDescription} />
     <meta name="twitter:image" content="/images/logo.png" />
     <link rel="icon" type="image/png" href="/favicon.png" />
     <link rel="shortcut icon" type="image/png" href="/favicon.png" />
     <link rel="apple-touch-icon" href="/images/logo.png" />
-    <title>{title}</title>
+    <title>{pageTitle}</title>
   </head>
   <body class="min-h-screen overflow-x-hidden bg-ivory text-charcoal antialiased">
-    <Header />
+    <Header lang={lang} brand={copy.brand} nav={copy.nav} />
     <main>
       <slot />
     </main>
-    <Footer />
+    <Footer brand={copy.brand} footer={copy.footer} styles={seriesTranslations[lang]} />
   </body>
 </html>

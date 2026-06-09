@@ -1,25 +1,49 @@
 ---
+import { languages, type Language } from '../i18n/config';
+
+interface Props {
+  lang: Language;
+  brand: {
+    name: string;
+    tagline: string;
+    homeLabel: string;
+  };
+  nav: {
+    home: string;
+    styles: string;
+    catalog: string;
+    wholesale: string;
+    contact: string;
+    openMenu: string;
+    language: string;
+  };
+}
+
+const { lang, brand, nav } = Astro.props;
+
 const navItems = [
-  { href: '#top', label: 'Home' },
-  { href: '#styles', label: 'Styles' },
-  { href: '#samples', label: 'Catalog' },
-  { href: '#wholesale', label: 'Wholesale' },
-  { href: '#contact', label: 'Contact' },
+  { href: '#top', label: nav.home },
+  { href: '#styles', label: nav.styles },
+  { href: '#samples', label: nav.catalog },
+  { href: '#wholesale', label: nav.wholesale },
+  { href: '#contact', label: nav.contact },
 ];
 
+const languageOptions = Object.entries(languages) as [Language, string][];
+
 const currentPath = Astro.url.pathname.replace(/\/$/, '') || '/';
-const isHome = currentPath === '/';
+const isHome = currentPath === '/' || currentPath === `/${lang}`;
 ---
 
 <header id="top" class="sticky top-0 z-40 scroll-mt-24 border-b border-charcoal/10 bg-ivory/92 backdrop-blur-xl">
   <div class="mx-auto flex max-w-7xl items-center justify-between px-4 py-4 sm:px-6 lg:px-8">
-    <a href="#top" class="group flex items-center gap-3" aria-label="HoneyClaw Nails home">
+    <a href="#top" class="group flex items-center gap-3" aria-label={brand.homeLabel}>
       <span class="grid size-12 place-items-center overflow-hidden rounded border border-charcoal/10 bg-white shadow-[4px_4px_0_rgba(215,154,43,0.55)]">
         <img src="/images/logo.png" alt="" class="h-full w-full object-contain p-1" width="1276" height="1344" />
       </span>
       <span class="leading-tight">
-        <span class="block text-base font-black uppercase tracking-normal">HoneyClaw Nails</span>
-        <span class="block text-xs font-semibold uppercase tracking-normal text-charcoal/58">Sweet but Sharp</span>
+        <span class="block text-base font-black uppercase tracking-normal">{brand.name}</span>
+        <span class="block text-xs font-semibold uppercase tracking-normal text-charcoal/58">{brand.tagline}</span>
       </span>
     </a>
 
@@ -37,13 +61,27 @@ const isHome = currentPath === '/';
       ))}
     </nav>
 
+    <div class="hidden items-center gap-2 lg:flex">
+      <label for="language-select" class="sr-only">{nav.language}</label>
+      <select
+        id="language-select"
+        class="rounded border border-charcoal/20 bg-white px-3 py-2 text-sm font-bold text-charcoal shadow-sm transition hover:border-honey"
+        aria-label={nav.language}
+        data-language-select
+      >
+        {languageOptions.map(([code, label]) => (
+          <option value={code} selected={code === lang}>{label}</option>
+        ))}
+      </select>
+    </div>
+
     <button
       id="mobile-menu-button"
       type="button"
       class="inline-flex size-11 items-center justify-center rounded border border-charcoal/20 bg-white/70 text-charcoal lg:hidden"
       aria-controls="mobile-menu"
       aria-expanded="false"
-      aria-label="Open navigation menu"
+      aria-label={nav.openMenu}
     >
       <span class="flex w-5 flex-col gap-1.5" aria-hidden="true">
         <span class="h-0.5 rounded bg-current"></span>
@@ -66,6 +104,17 @@ const isHome = currentPath === '/';
           {item.label}
         </a>
       ))}
+      <label class="mt-2 text-xs font-black uppercase tracking-normal text-charcoal/58" for="mobile-language-select">{nav.language}</label>
+      <select
+        id="mobile-language-select"
+        class="rounded border border-charcoal/20 bg-white px-3 py-3 text-sm font-bold text-charcoal"
+        aria-label={nav.language}
+        data-language-select
+      >
+        {languageOptions.map(([code, label]) => (
+          <option value={code} selected={code === lang}>{label}</option>
+        ))}
+      </select>
     </div>
   </nav>
 
@@ -83,6 +132,15 @@ const isHome = currentPath === '/';
       link.addEventListener('click', () => {
         menuButton?.setAttribute('aria-expanded', 'false');
         mobileMenu.classList.add('hidden');
+      });
+    });
+
+    document.querySelectorAll('[data-language-select]').forEach((select) => {
+      select.addEventListener('change', (event) => {
+        const language = event.currentTarget instanceof HTMLSelectElement ? event.currentTarget.value : 'en';
+        const hash = window.location.hash || '';
+        localStorage.setItem('preferredLanguage', language);
+        window.location.href = `/${language}/${hash}`;
       });
     });
   </script>

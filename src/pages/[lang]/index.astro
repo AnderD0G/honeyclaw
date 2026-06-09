@@ -1,0 +1,265 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import ContactCTA from '../../components/ContactCTA.astro';
+import ProductCard from '../../components/ProductCard.astro';
+import SeriesCard from '../../components/SeriesCard.astro';
+import products from '../../data/products.json';
+import { defaultLanguage, isLanguage, supportedLanguages, type Language } from '../../i18n/config';
+import { productTranslations, seriesTranslations, t } from '../../i18n/ui';
+
+export function getStaticPaths() {
+  return supportedLanguages.map((lang) => ({ params: { lang } }));
+}
+
+const lang = isLanguage(Astro.params.lang) ? Astro.params.lang : defaultLanguage;
+const copy = t(lang);
+const series = seriesTranslations[lang];
+const productCopy = productTranslations[lang] as Record<string, {
+  name: string;
+  style: string;
+  shape: string;
+  technique: string;
+  description: string;
+  tags: string[];
+}>;
+
+const heroSlides = [
+  {
+    image: '/images/products/hc-y2k-001.svg',
+    alt: copy.hero.slides[0],
+  },
+  {
+    image: '/images/products/hc-leo-001.svg',
+    alt: copy.hero.slides[1],
+  },
+  {
+    image: '/images/products/hc-chr-001.svg',
+    alt: copy.hero.slides[2],
+  },
+];
+
+const localizedProducts = products.map((product) => ({
+  ...product,
+  ...productCopy[product.code],
+}));
+
+const productsBySeries = series.map((item) => ({
+  ...item,
+  products: localizedProducts.filter((product) => product.style === item.name),
+}));
+---
+
+<BaseLayout lang={lang as Language}>
+  <section class="relative overflow-hidden px-4 py-16 sm:px-6 sm:py-20 lg:px-8 lg:py-24">
+    <div class="absolute inset-x-0 top-0 h-px chrome-line"></div>
+    <div class="mx-auto grid max-w-7xl gap-12 lg:grid-cols-[1.05fr_0.95fr] lg:items-center">
+      <div>
+        <p class="inline-block max-w-full rounded border border-charcoal/10 bg-white px-4 py-2 text-xs font-black uppercase tracking-normal text-honey shadow-sm">
+          {copy.hero.eyebrow}
+        </p>
+        <h1 class="mt-7 max-w-4xl text-5xl font-black leading-[0.95] sm:text-6xl lg:text-7xl">
+          {copy.hero.title}
+        </h1>
+        <p class="mt-5 text-2xl font-black text-charcoal/82 sm:text-3xl">{copy.hero.subtitle}</p>
+        <p class="mt-6 max-w-2xl text-base leading-8 text-charcoal/70 sm:text-lg">
+          {copy.hero.body}
+        </p>
+        <div class="mt-8 flex flex-col gap-3 sm:flex-row">
+          <a href="#samples" class="inline-flex items-center justify-center rounded bg-charcoal px-6 py-4 text-sm font-black text-ivory transition hover:bg-honey hover:text-charcoal">
+            {copy.hero.primaryCta}
+          </a>
+          <a href="#contact" class="inline-flex items-center justify-center rounded border border-charcoal/20 bg-white px-6 py-4 text-sm font-black text-charcoal transition hover:border-honey hover:bg-blush/25">
+            {copy.hero.secondaryCta}
+          </a>
+        </div>
+      </div>
+
+      <div class="relative min-h-[420px] overflow-hidden rounded-lg border border-charcoal/10 bg-white shadow-soft sm:min-h-[500px]">
+        <div class="absolute inset-0 bg-[linear-gradient(135deg,rgba(244,184,200,0.24),rgba(255,250,240,0.5)_38%,rgba(200,205,210,0.28))]"></div>
+        {heroSlides.map((slide, index) => (
+          <img
+            src={slide.image}
+            alt={slide.alt}
+            class="hero-carousel-slide absolute inset-0 h-full w-full object-cover"
+            style={`--slide-index: ${index};`}
+            width="800"
+            height="1000"
+            loading={index === 0 ? 'eager' : 'lazy'}
+          />
+        ))}
+        <div class="absolute inset-0 bg-[linear-gradient(180deg,rgba(33,31,35,0.02),rgba(33,31,35,0.12)_62%,rgba(33,31,35,0.34))]"></div>
+        <div class="absolute right-5 top-5 flex gap-2" aria-hidden="true">
+          {heroSlides.map((_, index) => (
+            <span class="hero-carousel-dot size-2.5 rounded-full bg-white/85 shadow-sm" style={`--slide-index: ${index};`}></span>
+          ))}
+        </div>
+        <div class="absolute bottom-5 left-5 right-5 rounded border border-charcoal/10 bg-ivory/88 p-4 backdrop-blur">
+          <p class="text-sm font-black uppercase tracking-normal">{copy.hero.imageCaption}</p>
+          <p class="mt-1 text-xs font-semibold text-charcoal/62">{copy.hero.imageCaptionBody}</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="styles" class="scroll-mt-24 px-4 py-16 sm:px-6 lg:px-8">
+    <div class="mx-auto max-w-7xl">
+      <div class="flex flex-col justify-between gap-4 sm:flex-row sm:items-end">
+        <div>
+          <p class="text-sm font-black uppercase tracking-normal text-honey">{copy.stylesSection.eyebrow}</p>
+          <h2 class="mt-3 text-3xl font-black sm:text-4xl">{copy.stylesSection.title}</h2>
+        </div>
+        <a href="#samples" class="text-sm font-black text-charcoal underline decoration-honey decoration-2 underline-offset-4">{copy.stylesSection.link}</a>
+      </div>
+      <div class="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+        {series.map((item) => (
+          <a href={`#${item.id}`} class="block">
+            <SeriesCard name={item.name} tone={item.tone} description={item.description} />
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section id="samples" class="scroll-mt-24 bg-white px-4 py-16 sm:px-6 lg:px-8">
+    <div class="mx-auto max-w-7xl">
+      <div class="flex flex-col justify-between gap-4 sm:flex-row sm:items-end">
+        <div>
+          <p class="text-sm font-black uppercase tracking-normal text-honey">{copy.samples.eyebrow}</p>
+          <h2 class="mt-3 max-w-3xl text-3xl font-black sm:text-4xl">{copy.samples.title}</h2>
+        </div>
+        <p class="max-w-md text-sm leading-6 text-charcoal/62">{copy.samples.note}</p>
+      </div>
+
+      <div class="mt-10 grid gap-12">
+        {productsBySeries.map((item) => (
+          <section id={item.id} class="scroll-mt-28">
+            <div class="mb-5 flex flex-col gap-3 border-b border-charcoal/10 pb-4 sm:flex-row sm:items-end sm:justify-between">
+              <div>
+                <p class="text-xs font-black uppercase tracking-normal text-honey">{copy.samples.seriesEyebrow}</p>
+                <h3 class="mt-1 text-2xl font-black sm:text-3xl">{item.name}</h3>
+              </div>
+              <p class="max-w-xl text-sm leading-6 text-charcoal/66">{item.description}</p>
+            </div>
+
+            {item.products.length > 0 ? (
+              <div class="grid gap-5 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+                {item.products.map((product) => <ProductCard product={product} labels={copy.productCard} />)}
+              </div>
+            ) : (
+              <div class="rounded-lg border border-charcoal/10 bg-ivory p-5 text-sm font-bold text-charcoal/62">
+                {copy.samples.empty}
+              </div>
+            )}
+          </section>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section id="wholesale" class="scroll-mt-24 px-4 py-16 sm:px-6 lg:px-8">
+    <div class="mx-auto grid max-w-7xl gap-10 lg:grid-cols-[0.82fr_1.18fr] lg:items-start">
+      <div>
+        <p class="text-sm font-black uppercase tracking-normal text-honey">{copy.wholesale.eyebrow}</p>
+        <h2 class="mt-3 text-3xl font-black sm:text-4xl">{copy.wholesale.title}</h2>
+        <p class="mt-5 text-base leading-7 text-charcoal/70">
+          {copy.wholesale.body}
+        </p>
+      </div>
+      <div class="grid gap-4 sm:grid-cols-2">
+        {copy.wholesale.capabilities.map((item) => (
+          <div class="rounded-lg border border-charcoal/10 bg-white p-5 shadow-sm">
+            <p class="text-lg font-black">{item}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section id="contact" class="scroll-mt-24 px-4 py-16 sm:px-6 lg:px-8">
+    <div class="mx-auto max-w-7xl">
+      <div class="grid gap-10 lg:grid-cols-[0.8fr_1.2fr] lg:items-start">
+        <div>
+          <p class="text-sm font-black uppercase tracking-normal text-honey">{copy.contact.eyebrow}</p>
+          <h2 class="mt-3 text-3xl font-black sm:text-4xl">{copy.contact.title}</h2>
+          <p class="mt-5 text-base leading-7 text-charcoal/70">
+            {copy.contact.body}
+          </p>
+        </div>
+        <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          {copy.contact.channels.map((channel) => (
+            <div class="rounded-lg border border-charcoal/10 bg-white p-5 shadow-sm">
+              <p class="text-lg font-black">{channel}</p>
+              <p class="mt-2 text-sm leading-6 text-charcoal/68">{copy.contact.channelNote}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <ContactCTA cta={copy.cta} />
+
+  <button
+    id="back-to-top"
+    type="button"
+    onclick="window.scrollTo(0, 0)"
+    aria-label={copy.backToTop}
+    class="fixed bottom-5 right-5 z-50 grid size-12 place-items-center rounded-full border border-charcoal/10 bg-honey text-lg font-black text-charcoal shadow-soft transition hover:-translate-y-1 hover:bg-charcoal hover:text-ivory"
+  >
+    ↑
+  </button>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      document.querySelector('#back-to-top')?.addEventListener('click', () => {
+        window.scrollTo(0, 0);
+      });
+    });
+  </script>
+
+  <style>
+    .hero-carousel-slide {
+      animation: heroSlide 12s infinite;
+      animation-delay: calc(var(--slide-index) * 4s);
+      opacity: 0;
+      transform: scale(1.04);
+    }
+
+    .hero-carousel-dot {
+      animation: heroDot 12s infinite;
+      animation-delay: calc(var(--slide-index) * 4s);
+      opacity: 0.35;
+    }
+
+    @keyframes heroSlide {
+      0%, 30% {
+        opacity: 1;
+        transform: scale(1);
+      }
+
+      36%, 94% {
+        opacity: 0;
+        transform: scale(1.04);
+      }
+
+      100% {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+
+    @keyframes heroDot {
+      0%, 30% {
+        opacity: 1;
+      }
+
+      36%, 94% {
+        opacity: 0.35;
+      }
+
+      100% {
+        opacity: 1;
+      }
+    }
+  </style>
+</BaseLayout>
