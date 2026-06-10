@@ -1,6 +1,6 @@
 {
   "$schema": "node_modules/wrangler/config-schema.json",
-  "name": "honey-claw-nails",
+  "name": "honeyclaw",
   "compatibility_date": "2025-01-01",
   // The build pipeline runs `wrangler deploy`, so deploy the static Astro
   // output as Workers Static Assets (serves ./dist, no Worker script needed).
