@@ -33,8 +33,12 @@ const heroSlides = [
     alt: copy.hero.slides[1],
   },
   {
-    image: '/images/hero/slide-3.png',
+    image: '/images/hero/slide-4.png',
     alt: copy.hero.slides[2],
+  },
+  {
+    image: '/images/hero/slide-5.png',
+    alt: copy.hero.slides[3],
   },
 ];
 
@@ -82,7 +86,7 @@ const productsBySeries = series.map((item) => ({
               src={slide.image}
               alt={slide.alt}
               data-slide={index}
-              class:list={['hero-slide pointer-events-none absolute inset-0 h-full w-full object-cover transition-opacity duration-700 ease-out', index === 0 ? 'opacity-100' : 'opacity-0']}
+              class:list={['hero-slide pointer-events-none absolute inset-0 h-full w-full object-cover transition-opacity duration-500 ease-out', index === 0 ? 'opacity-100' : 'opacity-0']}
               width="800"
               height="1000"
               loading={index === 0 ? 'eager' : 'lazy'}
@@ -242,7 +246,7 @@ const productsBySeries = series.map((item) => ({
         };
         const start = () => {
           stop();
-          timer = window.setInterval(() => show(current + 1), 4000);
+          timer = window.setInterval(() => show(current + 1), 3000);
         };
 
         dots.forEach((dot, i) =>

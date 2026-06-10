@@ -32,7 +32,8 @@ export const ui = {
       slides: [
         'Leopard and gothic charm press-on nail set',
         'Chrome cat-eye marble press-on nail set',
-        'Nude jelly oval press-on nail set',
+        'Crystal and pearl embellished press-on nail set',
+        'Rose nude jelly press-on nail set',
       ],
     },
     stylesSection: {
@@ -123,7 +124,8 @@ export const ui = {
       slides: [
         '豹纹哥特饰品穿戴甲套组',
         '镭射猫眼大理石穿戴甲套组',
-        '裸色果冻椭圆穿戴甲套组',
+        '水钻珍珠饰品穿戴甲套组',
+        '玫瑰裸色果冻穿戴甲套组',
       ],
     },
     stylesSection: {
@@ -214,7 +216,8 @@ export const ui = {
       slides: [
         '레오파드 고딕 참 네일팁 세트',
         '크롬 캣아이 마블 네일팁 세트',
-        '누드 젤리 오벌 네일팁 세트',
+        '크리스털과 진주 장식 네일팁 세트',
+        '로즈 누드 젤리 네일팁 세트',
       ],
     },
     stylesSection: {
